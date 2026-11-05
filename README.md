@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # VulnHub — Fail Database
 
 Site web dark / soigné qui regroupe les fails de sécu (web, API, apps, OS) avec filtre par OS (Windows, macOS, Linux, Kali).
@@ -58,3 +59,6 @@ npm run preview
 ```
 
 Sortie dans `dist/`.
+=======
+# vuln-hub
+>>>>>>> f55e8bf4aa7d9c9ae598e7842346fb7364d9700d
